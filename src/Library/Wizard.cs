@@ -8,7 +8,8 @@ namespace RoleplayGame
         private int armor;
         private int attack;
         private string story;
-
+        public SpellBook SpellBook {get; private set;}
+        public VoidStaff VoidStaff {get; private set;}
         public string Name
         {
             get {
@@ -95,6 +96,8 @@ namespace RoleplayGame
             this.Armor = armor;
             this.Attack = attack;
             this.Story = story;
+            this.SpellBook = new SpellBook();
+            this.VoidStaff = new VoidStaff();
         }
     }
 }
