@@ -14,6 +14,10 @@ namespace RoleplayGame
 
         private string story;
 
+        public Bow Bow{get; private set;}
+
+        public Shuanggou Shuanggou{get; private set;}
+
         public string Name
         {
             get
@@ -101,12 +105,14 @@ namespace RoleplayGame
 
         public Elf(string name, int life, int magic, int armor, int attack, string story)
         {
-            this.Name=name;
-            this.Life=life;
-            this.Magic=magic;
-            this.Armor=armor;
-            this.Attack=attack;
-            this.Story=story;
+            this.Name = name;
+            this.Life = life;
+            this.Magic = magic;
+            this.Armor = armor;
+            this.Attack = attack;
+            this.Story = story;
+            this.Bow = new Bow();
+            this.Shuanggou = new Shuanggou();
         }
 
     }
