@@ -1,6 +1,6 @@
-namespace Enano
+namespace RoleplayGame
 {
-    public class Enano
+    public class Dwarf
     {
         private string name;
         private int attack;
@@ -84,7 +84,7 @@ namespace Enano
             }    
         }
 
-        public Enano(string name, int attack, int armor, int life, string story)
+        public Dwarf(string name, int attack, int armor, int life, string story)
         {
             this.Name = name;
             this.Attack = attack;

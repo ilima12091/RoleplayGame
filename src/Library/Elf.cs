@@ -1,6 +1,5 @@
 namespace RoleplayGame
 {
-
     public class Elf
     {
         private string name;
