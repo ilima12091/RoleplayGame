@@ -100,13 +100,13 @@ namespace RoleplayGame
             }
         }
 
-        public Elf(string name, int life, string story)
+        public Elf(string name, int life, int magic, int armor, int attack, string story)
         {
             this.Name=name;
             this.Life=life;
-            this.Magic=10;
-            this.Armor=20;
-            this.Attack=10;
+            this.Magic=magic;
+            this.Armor=armor;
+            this.Attack=attack;
             this.Story=story;
         }
 
