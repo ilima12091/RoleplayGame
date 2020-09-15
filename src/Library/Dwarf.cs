@@ -8,6 +8,9 @@ namespace RoleplayGame
         private int life;
         private string story;
 
+        public Sword_of_Morthrond Sword_Of_Morthrond{get;private set;}
+        public Ancestral_Armor Ancestral_Armor{get;private set;}
+
         public int Life
         {
             get
@@ -91,6 +94,8 @@ namespace RoleplayGame
             this.Armor = armor;
             this.Life = life;
             this.Story = story;
+            this.Sword_Of_Morthrond = new Sword_of_Morthrond();
+            this.Ancestral_Armor = new Ancestral_Armor();
         }
 
 
