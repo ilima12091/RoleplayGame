@@ -4,6 +4,7 @@ namespace RoleplayGame
     {
         private string name;
         private int life;
+        private int currentLife;
         private int magic;
         private int armor;
         private int attack;
@@ -32,6 +33,19 @@ namespace RoleplayGame
                 if(value > 0)
                 {
                     this.life = value;
+                }
+            }
+        }
+
+        public int CurrentLife
+        {
+            get {
+                return this.currentLife;
+            }
+            set {
+                if(value > 0)
+                {
+                    this.currentLife = value;
                 }
             }
         }
@@ -92,12 +106,53 @@ namespace RoleplayGame
         {
             this.Name = name;
             this.Life = life;
+            this.CurrentLife = life;
             this.Magic = magic;
             this.Armor = armor;
             this.Attack = attack;
             this.Story = story;
             this.SpellBook = new SpellBook();
             this.VoidStaff = new VoidStaff();
+        }
+
+        public int GetTotalAttack() 
+        {
+            int totalAttack = this.Attack + this.Magic + this.SpellBook.GetTotalMagic() + this.VoidStaff.Magic;
+            return totalAttack;
+        }
+
+        public int GetTotalDefense()
+        {
+            return this.Armor;
+        }
+
+        public void Recover()
+        {
+            this.CurrentLife = this.Life;
+        }
+
+        public void AttackWizard(Wizard w)
+        {
+            if(w.GetTotalDefense() < this.GetTotalAttack())
+            {
+                w.CurrentLife -= (this.GetTotalAttack() - w.GetTotalDefense());
+            }
+        }
+
+        public void AttackDwarf(Dwarf d)
+        {
+            if(d.Armor < this.GetTotalAttack())
+            {
+                d.CurrentLife -= (this.GetTotalAttack() - d.GetTotalDefense());
+            }
+        }
+
+        public void AttackElf(Elf e)
+        {
+            if(e.Armor < this.GetTotalAttack())
+            {
+                e.CurrentLife -= (this.GetTotalAttack() - e.GetTotalDefense());
+            }
         }
     }
 }
