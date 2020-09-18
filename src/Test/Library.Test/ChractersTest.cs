@@ -8,12 +8,14 @@ namespace Test.Library
 
         private Dwarf dwarf;
         private Elf elf;
+        private Wizard wizard;
 
         [SetUp]
         public void Setup()
         {
             dwarf = new Dwarf("Nacho", 10, 10, 10, "El enano nacho");
             elf = new Elf("Jero", 10, 10, 30, 10, "El elfo Jero");
+            wizard = new Wizard("Rodri",250,10,10,10,"El mago Rodri");
         }
 
         [Test]
@@ -33,7 +35,13 @@ namespace Test.Library
             dwarf.Recover();
             Assert.True(dwarf.CurrentLife == dwarf.Life);
         }
-
+        [Test]
+        /*Este test prueba que el método ataque afecta correctamente a la vida del contrincante*/
+        public void Attack()
+        {
+            elf.AttackWizard(wizard);
+            Assert.True(wizard.CurrentLife == 60);
+        }
     }
 
 }
