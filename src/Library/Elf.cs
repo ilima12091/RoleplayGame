@@ -14,6 +14,8 @@ namespace RoleplayGame
 
         private string story;
 
+        private int currentLife;
+
         public Bow Bow{get; private set;}
 
         public Shuanggou Shuanggou{get; private set;}
@@ -102,11 +104,25 @@ namespace RoleplayGame
                 }
             }
         }
-
+        public int CurrentLife
+        {
+            get
+            {
+                return this.currentLife;
+            }
+            set
+            {
+                if(value>0)
+                {
+                    this.currentLife=value;
+                }
+            }
+        }
         public Elf(string name, int life, int magic, int armor, int attack, string story)
         {
             this.Name = name;
             this.Life = life;
+            this.CurrentLife = life;
             this.Magic = magic;
             this.Armor = armor;
             this.Attack = attack;
@@ -115,6 +131,42 @@ namespace RoleplayGame
             this.Shuanggou = new Shuanggou();
         }
 
+        public int GetTotalAttack()
+        {
+            int totalAttack = this.Magic+this.Attack+Shuanggou.Attack+Bow.Attack;
+            return totalAttack;
+        }
+
+        public int GetTotalDefense()
+        {
+            int totalDefense = this.Armor;
+            return totalDefense;
+        }
+
+        public void Recover()
+        {
+            this.CurrentLife=this.Life;
+        }
+
+        public void AttackElf(Elf e)
+        {   if (e.GetTotalDefense()<this.GetTotalAttack())
+            {
+                e.CurrentLife -= (this.GetTotalAttack()-e.GetTotalDefense());
+            }
+        }
+        public void AttackWizard(Wizard w)
+        {   if (w.GetTotalDefense()<this.GetTotalAttack())
+            {
+                w.CurrentLife -= (this.GetTotalAttack()-w.GetTotalDefense());
+            }
+        }
+        public void AttackDwarf(Dwarf d)
+        {   if (d.GetTotalDefense()<this.GetTotalAttack())
+            {
+                d.CurrentLife -= (this.GetTotalAttack()-d.GetTotalDefense());
+            }
+        }
     }
+
 }
 
