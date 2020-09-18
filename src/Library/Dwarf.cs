@@ -6,6 +6,7 @@ namespace RoleplayGame
         private int attack;
         private int armor;
         private int life;
+        private int currentlife;
         private string story;
 
         public Sword_of_Morthrond Sword_Of_Morthrond{get;private set;}
@@ -23,6 +24,21 @@ namespace RoleplayGame
                 if(value>0)
                 {
                     this.life = value;
+                }
+            }    
+        }
+        public int CurrentLife
+        {
+            get
+            {
+                return this.currentlife;
+            }
+
+            set
+            {
+                if(value>0)
+                {
+                    this.currentlife = value;
                 }
             }    
         }
@@ -93,11 +109,48 @@ namespace RoleplayGame
             this.Attack = attack;
             this.Armor = armor;
             this.Life = life;
+            this.CurrentLife = life;
             this.Story = story;
             this.Sword_Of_Morthrond = new Sword_of_Morthrond();
             this.Ancestral_Armor = new Ancestral_Armor();
         }
 
-
+        public int GetTotalAttack()
+        {
+            
+            int totalAttack = this.Attack + Sword_Of_Morthrond.Attack; 
+            return totalAttack;
+        }
+        public int GetTotalDefense()
+        {
+            
+            int totalDefense = this.Armor + Ancestral_Armor.Armor; 
+            return totalDefense;
+        }
+        public void Recover()
+        {
+            this.CurrentLife = this.Life;
+        }
+        public void AttackWizard(Wizard w)
+        {
+            if(w.GetTotalDefense() < this.GetTotalAttack())
+            {
+                w.CurrentLife -= (this.GetTotalAttack() - w.GetTotalDefense());     
+            }
+        }
+        public void AttackElf(Elf e)
+        {
+            if(e.GetTotalDefense() < this.GetTotalAttack())
+            {
+                e.CurrentLife -= (this.GetTotalAttack() - e.GetTotalDefense());     
+            }
+        }
+        public void AttackDwarf(Dwarf d)
+        {
+            if(d.GetTotalDefense() < this.GetTotalAttack())
+            {
+                d.CurrentLife -= (this.GetTotalAttack() - d.GetTotalDefense());     
+            }
+        }
     }
 }
